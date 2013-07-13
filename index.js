@@ -18,11 +18,6 @@ argo()
       urlObj.query[param] = query[param];
      });
 
-     Object.keys(urlObj.query).forEach(function(param){
-      console.log(param);
-      urlObj.query[param] = urlObj.query[param]; 
-     });
-
      delete urlObj.search;
      console.log("URL:"+url.format(urlObj));
      env.request.url = url.format(urlObj); 
@@ -30,10 +25,20 @@ argo()
     });
     handle("response", function(env, next){
       env.target.response.getBody(function(err, body){
-        console.log(err);
-        console.log(body.toString('utf-8'));
+        //console.log(err);
+        //console.log(body.toString('utf-8'));
+        var venues = [];
         var body = JSON.parse(body.toString('utf-8'));
-        env.target.response.body = JSON.stringify(body.response); 
+        if(body.response.groups) {
+          body.response.groups.forEach(function(group){
+            group.items.forEach(function(venue){
+              venues.push({"name":venue.venue.name});
+            });
+          });
+        } else {
+          venues.push({"name":body.response.venue.name});
+        }
+        env.target.response.body = JSON.stringify(venues); 
         next(env);
       });
     });
