@@ -5,13 +5,26 @@ argo()
   .use(function(handle) {
     //Lets transplant our credentials via our proxy
     handle("request", function(env, next){
-     var urlObj = url.parse(env.request.url);
+     var urlObj = url.parse(env.request.url, true);
+     console.log(urlObj.query.ll);
      var query = {
       "client_id":"D2KNC1TFRWRELI0XFVKV1BYOMM2G0G5HIOIJARQQXN34WYCA",
       "client_secret":"5UG1V5I4XHFQQ5XCVBJ2DMCEXA5D2NWBLVTORPFAWB4GF1PM",
       "v":"20130712"
      };
-     urlObj.query = query;
+     
+     Object.keys(query).forEach(function(param){
+      console.log(param);
+      urlObj.query[param] = query[param];
+     });
+
+     Object.keys(urlObj.query).forEach(function(param){
+      console.log(param);
+      urlObj.query[param] = urlObj.query[param]; 
+     });
+
+     delete urlObj.search;
+     console.log("URL:"+url.format(urlObj));
      env.request.url = url.format(urlObj); 
      next(env);
     });
