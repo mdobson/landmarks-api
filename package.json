@@ -1,0 +1,15 @@
+{
+  "name": "fsqproxy",
+  "version": "0.0.0",
+  "description": "Simple Argo proxy for the foursquare api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies":{
+    "argo":"0.2.1"
+  },
+  "repository": "",
+  "author": "@mdobs",
+  "license": "BSD"
+}
