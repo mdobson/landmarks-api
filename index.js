@@ -32,11 +32,25 @@ argo()
         if(body.response.groups) {
           body.response.groups.forEach(function(group){
             group.items.forEach(function(venue){
-              venues.push({"name":venue.venue.name});
+              venues.push({
+                "name":venue.venue.name, 
+                "city":venue.venue.location.city,
+                "location":{
+                  "lat":venue.venue.location.lat, 
+                  "lng":venue.venue.location.lng
+                }
+              });
             });
           });
         } else {
-          venues.push({"name":body.response.venue.name});
+          venues.push({
+            "name":body.response.venue.name,
+            "city":venue.venue.location.city,
+                "location":{
+                  "lat":venue.venue.location.lat, 
+                  "lng":venue.venue.location.lng
+                }
+          });
         }
         env.target.response.body = JSON.stringify(venues); 
         next(env);
