@@ -1,6 +1,5 @@
-##Simple Foursquare API Proxy
+##Landmarks API
 
-Making it simple to hit their venues API and transform the response.
+Simple JSON feed of UserGrid / App Services compatible landmarks. Simply copy this JSON verbatim and paste into your console for a landmarks feed.
 
 
-Change the `client_id` and `client_secret` variables in the code to your own API credentials and begin making basic requests.

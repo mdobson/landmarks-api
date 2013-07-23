@@ -1,7 +1,7 @@
 {
-  "name": "fsqproxy",
+  "name": "landmarksproxy",
   "version": "0.0.0",
-  "description": "Simple Argo proxy for the foursquare api",
+  "description": "Simple Argo proxy for a landmarks feed",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
